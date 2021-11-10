@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+
+      
+{% block blogactive %} active {% endblock blogactive %} 
+
+
+{% block body %}
+{% load static %}
+<section class="gray" style="z-index: 1; position: relative">
+    <div class="container" style="padding: 60px 0">
+
+        <h2 >Articles by Media Club</h2>
+        <div class="row text-center">
+          <!-- Team item-->
+          {% for post in allPosts %}
+          <div class="col-xl-3 col-sm-6 mb-5">
+            <div class="card " >
+            <div class="bg-white shadow-sm py-1 "><img
+                src="/media/{{post.image}}" alt="..." width="240" height="240">
+                <div class="card-body" >
+                  <a href="/blog/{{post.slug}}" class="stretched-link"></a>
+                  <h3>
+                    {{post.title}}
+                  </h3>
+                  <div class="mb-1 text-muted" style="font-size:smaller;">{{post.date}} by {{post.author}}</div>
+                  <p class="card-text">
+                    <div class="preview"> {{post.content|safe| truncatechars:100}} </div>
+                  </p>
+                </div>
+                <a href="/blog/{{post.slug}}">
+                  <h4 class="middle" style="color: #4fa7a7;">
+                    read this article
+                  </h4>
+                </a>
+            </div>
+          </div>
+        </div>
+          {% if forloop.counter|divisibleby:4 %}
+        </div><br>
+        <div class="row text-center">
+          {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<script>
+let previews=document.getElementsByClassName('preview');
+Array.from(previews).forEach((element)=>{
+    element.innerHTML=element.innerText;
+  });
+</script>
+
+{% endblock %}

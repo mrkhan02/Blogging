@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}Home{%endblock title%}
+{% block homeactive %} active {% endblock homeactive %}
+{% block css %}
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
+
+{% endblock css %}
+{% block body %}
+{% load static %}
+<!-- display home -->
+
+<section class="meer container-fluid px-0 " style="position: fixed; z-index: 0; background-image: url('static/img/iitcampus.jpg')">
+
+  <div class="d-flex flex-column align-items-center justify-content-center m-0" style="height: 100vh;">
+    <h1 class="display-3 mb-3 text-black" style="color:rgb(0, 0, 0)">The Kamand Express</h1>
+    <a href="/blog" class="btn btn-outline-dark btn-lg" style='color:rgb(0, 0, 0)'>read the articles</a>
+  </div>
+</section>
+
+<!-- behind display -->
+<div class="d-flex flex-row" style="height: 100vh"></div>
+
+<!-- intro -->
+<section class="bg-white" style="z-index: 1; position: relative">
+  <div class="container">
+    <div class="row" style="padding: 60px 0">
+      <div class="col-lg-6 align-self-center">
+        <h2 class="mb-4 px-2">
+          <em>Media Club</em>
+        </h2>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="px-2">
+          about us
+        </h5>
+        <p class="px-2">
+          Small group of IIT Mandi students.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- featured posts -->
+<section class="gray" style="z-index: 1; position: relative">
+  <div class="container">
+    <div class="row justify-content-around" style="padding: 50px">
+      <h4 class="px-2">
+        featured articles
+      </h4>
+    </div>
+
+        <div class="row text-center">
+          <!-- Team item-->
+          {% for post in allPosts %}
+          <div class="col-xl-3 col-sm-6 mb-5">
+            <div class="card " style="height: min-content;" >
+            <div class="bg-white shadow-sm py-1 "><img
+                src="media/{{post.image}}" alt="..." width="240" height="240">
+                <div class="card-body" >
+                  <a href="/blog/{{post.slug}}" class="stretched-link"></a>
+                  <h3>
+                    {{post.title}}
+                  </h3>
+                  <div class="mb-1 text-muted" style="font-size:smaller;">{{post.date}} by {{post.author}}</div>
+                  <p class="card-text">
+                    <div class="preview"> ... </div>
+                  </p>
+                </div>
+                <a href="/blog/{{post.slug}}">
+                  <h4 class="middle" style="color: #4fa7a7;">
+                    read this article
+                  </h4>
+                </a>
+            </div>
+          </div>
+        </div>
+          {% if forloop.counter|divisibleby:4 %}
+        </div><br>
+        <div class="row text-center">
+          {% endif %}
+          {% endfor %}
+        </div>
+
+      <div class="row justify-content-around">
+        <a href="/blog" class="btn btn-sm btn-outline-dark" style="margin-bottom: 50px">
+          read more
+        </a>
+
+    <!-- End-->
+
+
+  </div>
+</section>
+<script>
+  let previews = document.getElementsByClassName('preview');
+  Array.from(previews).forEach((element) => {
+    element.innerHTML = element.innerText;
+  });
+</script>
+{% endblock body %}

@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% block title %}Home{%endblock title%}
+{% block homeactive %} active {% endblock homeactive %}
+{% block css %}
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #2f2f2f;
+}
+.main {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.d1 {
+  position: absolute;
+  background-image: url(https://newevolutiondesigns.com/images/freebies/4k-wallpaper-3.jpg);
+  background-size: 2700px 1500px;
+
+  height: 30vh;
+  width: 15vw;
+
+  background-position: 0 50%;
+
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  animation: dd1 10s 1, dd12 10s 1;
+  animation-delay: 4s, 14s;
+}
+.d2 {
+  position: absolute;
+  background-image: url(https://newevolutiondesigns.com/images/freebies/4k-wallpaper-3.jpg);
+  background-size: 2700px 1500px;
+
+  height: 50vh;
+  width: 25vw;
+
+  background-position: -10vw 50%;
+  left: 10vw;
+
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: dd2 10s 2;
+  animation-delay: 4s;
+}
+.d3 {
+  position: absolute;
+  background-image: url(https://newevolutiondesigns.com/images/freebies/4k-wallpaper-3.jpg);
+  background-size: 2700px 1500px;
+  overflow: hidden;
+
+  height: 100vh;
+  width: 40vw;
+  left: 25vw;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+  background-position: -35vw 50%;
+
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  animation: dd3 10s 2;
+  animation-delay: 4s;
+}
+.d4 {
+  position: absolute;
+  overflow: hidden;
+  background-image: url(https://newevolutiondesigns.com/images/freebies/4k-wallpaper-3.jpg);
+  background-size: 2700px 1500px;
+
+  height: 80vh;
+  width: 25vw;
+  left: 60vw;
+  background-position: -70vw 50%;
+
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: dd4 10s 2;
+  animation-delay: 4s;
+}
+
+@keyframes dd1 {
+  0% {
+  }
+  50% {
+    width: 95vw;
+  }
+}
+@keyframes dd12 {
+  0% {
+  }
+  50% {
+    background-position: Calc(0vw - 40px) 50%;
+  }
+}
+@keyframes dd2 {
+  0% {
+  }
+  50% {
+    background-position: Calc(-10vw - 40px) 50%;
+  }
+}
+@keyframes dd3 {
+  0% {
+  }
+  50% {
+    background-position: Calc(-35vw - 40px) 50%;
+  }
+}
+@keyframes dd4 {
+  0% {
+  }
+  50% {
+    background-position: Calc(-70vw - 40px) 50%;
+  }
+}
+
+
+{% endblock css %}
+{% block body %}
+{% load static %}
+<!-- display home -->
+
+<section class="meer container-fluid px-0 " style="position: fixed; z-index: 0;background-image: url(https://online.king.edu/wp-content/uploads/730x400-201806-TechBuzzwords-header-KING.png) ">
+  <div class="main">
+    <div class="d1"></div>
+    <div class="d2"></div>
+    <div class="d3"></div>
+    <div class="d4"></div>
+</div>
+  <div class="d-flex flex-column align-items-center justify-content-center m-0" style="height: 100vh;z-index: 1">
+    <h1 class="display-3 mb-3 text-black" style="color:rgb(0, 0, 0)">Amateur Blogs</h1>
+    <a href="/blog" class="btn btn-outline-dark btn-lg" style='color:rgb(0, 0, 0)'>read the articles</a>
+  </div>
+</section>
+
+<!-- behind display -->
+<div class="d-flex flex-row" style="height: 100vh"></div>
+
+
+<!-- featured posts -->
+<section class="gray" style="z-index: 1; position: relative">
+  <div class="container">
+    <div class="row justify-content-around" style="padding: 50px">
+      <h4 class="px-2">
+        featured articles
+      </h4>
+    </div>
+
+    <!-- <div class="row justify-content-around">
+      <div class="card-deck">
+        {% for post in allPosts %}
+        <div class="card mx-3" style="border-radius: 0; margin-bottom: 50px; width: 25%">
+          <img src="media/{{post.image}}" class="card-img-top" style="border-radius: 0 ; width:fit; height:fit;"
+            alt="Read Article" />
+          <div class="card-body">
+            <a href="/blog/{{post.slug}}" class="stretched-link"></a>
+            <h3>
+              {{post.title}}
+            </h3>
+            <div class="mb-1 text-muted">{{post.date}} by {{post.author}}</div>
+            <p class="card-text">
+            <div class="preview"> {{post.content|safe| truncatechars:500}} </div>
+            </p>
+          </div>
+          <a href="/blog/{{post.slug}}">
+            <h4 class="middle" style="color: #4fa7a7;">
+              read this article
+            </h4>
+          </a>
+        </div>
+        {% if forloop.counter|divisibleby:2 %}
+      </div><br>
+      <div class="card-deck">
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div> -->
+
+
+
+
+        <div class="row text-center">
+          <!-- Team item-->
+          {% for post in allPosts %}
+          <div class="col-xl-3 col-sm-6 mb-5">
+            <div class="card " style="height: min-content;" >
+            <div class="bg-white shadow-sm py-1 "><img
+                src="media/{{post.image}}" alt="..." width="240" height="240">
+                <div class="card-body" >
+                  <a href="/blog/{{post.slug}}" class="stretched-link"></a>
+                  <h3>
+                    {{post.title}}
+                  </h3>
+                  <div class="mb-1 text-muted" style="font-size:smaller;">{{post.date}} by {{post.author}}</div>
+                  <p class="card-text">
+                    <div class="preview"> {{post.content|safe| truncatechars:100}} </div>
+                  </p>
+                </div>
+                <a href="/blog/{{post.slug}}">
+                  <h4 class="middle" style="color: #4fa7a7;">
+                    read this article
+                  </h4>
+                </a>
+            </div>
+          </div>
+        </div>
+          {% if forloop.counter|divisibleby:4 %}
+        </div><br>
+        <div class="row text-center">
+          {% endif %}
+          {% endfor %}
+        </div>
+
+      <div class="row justify-content-around">
+        <a href="/blog" class="btn btn-sm btn-outline-dark" style="margin-bottom: 50px">
+          read more
+        </a>
+
+    <!-- End-->
+
+
+  </div>
+</section>
+<script>
+  let previews = document.getElementsByClassName('preview');
+  Array.from(previews).forEach((element) => {
+    element.innerHTML = element.innerText;
+  });
+</script>
+{% endblock body %}

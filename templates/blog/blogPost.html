@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogpost{% endblock title %}
+
+{% block body %}
+{% load humanize %}
+{% load extras %}
+<section class="bg-white" style="z-index: 1; position: relative">
+    <div class="container" style="padding: 60px 0">
+  <div class="blog-post">
+          <h2 class="blog-post-title">{{post.title}}</h2>
+          <p class="blog-post-meta">{{post.date}} by <a href="#">{{post.author}}</a></p>
+  
+          <p>{{post.content|safe}}</p>
+          <hr>
+        </div>
+        </div>
+  </section>
+
+
+
+
+</div>
+{% endblock %}

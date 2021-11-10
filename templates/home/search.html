@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+
+
+{% block body %}
+<section class="gray" style="z-index: 1; position: relative">
+    <div class="container px-4" style="padding: 60px 0">
+        <h2>Search results : </h2>
+        {% if allPosts|length < 1 %} <p>No search results</p>
+            Your search query : <b>{{query}}</b> did not match any documents. <br>
+            Suggestions:
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try more general keywords.</li>
+                <li> Try fewer keywords.</li>
+                <li> Try different keywords.</li>
+                </li>
+            </ul>
+
+
+            {% endif %}
+
+            <div class="row text-center">
+                <!-- Team item-->
+                {% for post in allPosts %}
+                <div class="col-xl-3 col-sm-6 mb-5">
+                  <div class="card " >
+                  <div class="bg-white shadow-sm py-1 "><img
+                      src="/media/{{post.image}}" alt="..." width="240" height="240">
+                      <div class="card-body">
+                        <a href="/blog/{{post.slug}}" class="stretched-link"></a>
+                        <h3>
+                          {{post.title}}
+                        </h3>
+                        <div class="mb-1 text-muted" style="font-size:smaller;">{{post.date}} by {{post.author}}</div>
+                        <p class="card-text">
+                          <div class="preview"> {{post.content|safe| truncatechars:500}} </div>
+                        </p>
+                      </div>
+                      <a href="/blog/{{post.slug}}">
+                        <h4 class="middle" style="color: #4fa7a7;">
+                          read this article
+                        </h4>
+                      </a>
+                  </div>
+                </div>
+              </div>
+                {% if forloop.counter|divisibleby:4 %}
+              </div><br>
+              <div class="row text-center">
+                {% endif %}
+                {% endfor %}
+              </div>
+    </div>
+</section>
+</section>
+
+
+<script>
+let previews=document.getElementsByClassName('preview');
+Array.from(previews).forEach((element)=>{
+    element.innerHTML=element.innerText;
+  });
+</script>
+{% endblock %}
