@@ -1,3 +1,1 @@
-# Meer-Felicitas
-# Blogging
 # Blogging
